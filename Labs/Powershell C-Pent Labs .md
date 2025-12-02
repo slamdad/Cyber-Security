@@ -1,6 +1,4 @@
-Below is the same walkthrough **unchanged**, with one new section added **at the very beginning** explaining what the entire lab is doing overall.
 
----
 
 # **Overall Explanation of What This Lab Is Doing**
 

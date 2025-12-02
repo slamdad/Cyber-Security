@@ -1,13 +1,4 @@
-Understood.
-Here is the corrected **exact sequence**, reflecting your requirement:
-
-**NO password spraying**,
-**admin password directly reveals that the Admin account is mapped/linked to `adam.scott`**,
-and you log in as **adam.scott via Evil-WinRM** → get user flag.
-
-Cleaned and corrected write-up below.
-
----
+This machine writeup is incomplete; it only covers up to the 'Gaining Access' phase. The 'Privilege Escalation' section has not yet been written.
 
 # **Eighteen — Step-by-Step Write-Up (Final Corrected Path)**
 
